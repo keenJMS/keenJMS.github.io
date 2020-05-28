@@ -4,11 +4,74 @@
   
   
   <entry>
+    <title>matplotlib</title>
+    <link href="/2020/05/28/matplotlib/"/>
+    <url>/2020/05/28/matplotlib/</url>
+    
+    <content type="html"><![CDATA[<h1 id="导入matplotlib"><a href="#导入matplotlib" class="headerlink" title="导入matplotlib"></a>导入matplotlib</h1><pre><code>import matplotlib.pyplot as pltimport matplotlib as mpl</code></pre><p>&emsp;&emsp;Matplotlib是Python的绘图库，其中的pyplot包封装了很多画图的函数。<a href="https://matplotlib.org/api/pyplot_summary.html" target="_blank" rel="noopener">Matplotlib.pyplot</a>包含一系列类似 MATLAB 中绘图函数的相关函数每个pyplot函数对一幅图片(figure)做一些改动：比如创建新图片，在图片创建一个新的作图区域(plotting area)，在一个作图区域内画直线，给图添加标签(label)等。matplotlib.pyplot是有状态的，亦即它会保存当前图片和作图区域的状态，新的作图函数会作用在当前图片的状态基础之上。 </p><h1 id="打开-关闭交互模式"><a href="#打开-关闭交互模式" class="headerlink" title="打开/关闭交互模式"></a>打开/关闭交互模式</h1><pre><code>plt.ion()plt.ioff()</code></pre><p>&emsp;&emsp;matplotlib的显示模式默认为阻塞（block）模式，打开交互模式后，执行plt.show（）程序会接着往下执行，可以显示多个窗口。但在show()之前一定要使用plt.ioff()，否则图片会一闪而过。  </p><h1 id="定义画布"><a href="#定义画布" class="headerlink" title="定义画布"></a>定义画布</h1><pre><code>plt.figure(num=None, figsize=None, dpi=None, facecolor=None, edgecolor=None, frameon=True)</code></pre><p>num:图像编号或名称，数字为编号 ，字符串为名称<br>figsize:指定figure的宽和高，单位为英寸；<br>dpi参数指定绘图对象的分辨率，即每英寸多少个像素，缺省值为80<br>1英寸等于2.5cm,A4纸是 21*30cm的纸张<br>facecolor:背景颜色<br>edgecolor:边框颜色<br>frameon:是否显示边框 </p><h1 id="画图并显示"><a href="#画图并显示" class="headerlink" title="画图并显示"></a>画图并显示</h1><pre><code>import matplotlib.pyplot as pltimport numpy as nppic=plt.figure(&apos;ex_1&apos;,figsize=(16,9),dpi=480,facecolor=&apos;red&apos;,edgecolor=&apos;blue&apos;)x = np.linspace(-10, 10, 500)y1=x*xy2=2*x+1plt.plot(x,y1)plt.plot(x,y2)    plt.savefig(&apos;ex_1.png&apos;)plt.show()</code></pre><p>plt.plot(自变量，因变量)将图表示出来，plt.savefig(‘文件名’),plt.show()显示出来。<br><img src="/img/plt_learning/ex_1.png" srcset="/img/loading.gif" alt="">  </p>]]></content>
+    
+    
+    <categories>
+      
+      <category>development</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>python库</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>pytorch入门</title>
+    <link href="/2020/05/26/pytorch%E7%9A%84forward/"/>
+    <url>/2020/05/26/pytorch%E7%9A%84forward/</url>
+    
+    <content type="html"><![CDATA[<h2 id="forward"><a href="#forward" class="headerlink" title="forward"></a>forward</h2><pre><code>class Module(nn.Module):def __init__(self):    super(Module, self).__init__()    # ......def forward(self, x):    # ......    return xdata = .....  #输入数据# 实例化一个对象module = Module()# 前向传播module(data)  # 而不是使用下面的# module.forward(data)   </code></pre><p>因为 python calss 中的<strong>call</strong>和<strong>init</strong>方法.使得module(data)等价与module.forward(data)</p><pre><code>#50000张训练图片  train_set = torchvision.datasets.CIFAR10(root=&apos;./data&apos;, train=True,                                    download=False,     transform=transform)train_loader = torch.utils.data.DataLoader(train_set, batch_size=36,                                      shuffle=False,     num_workers=0)</code></pre><p>数据集通过torchvision.dataset.进行设置下载，通过一个dataloader使其成为训练中可用的参数</p><pre><code> outputs = net(val_image)  # [batch, 10]predict_y = torch.max(outputs, dim=1)[1]accuracy = (predict_y == val_label).sum().item() / val_label.size(0)</code></pre><p>outputs为5000<em>10，第0维为图片序号，第一维为10个类别的数值，最大的一般视为识别的类<br>*</em>torch.max(input, dim, keepdim=False, out=None)**<br>Returns a namedtuple <strong>(values, indices)</strong> where values is the maximum value of each row of the input tensor in the given dimension dim. And indices is the index location of each maximum value found (argmax).所以predict_y为最大值的索引<br>predict_y == val_label为5000个true或false组成的tensor列表用sum将它们合成一个tensor数，然后.item变为数</p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>神经网络的基本内容</title>
+    <link href="/2020/05/25/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%86%85%E5%AE%B9/"/>
+    <url>/2020/05/25/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%86%85%E5%AE%B9/</url>
+    
+    <content type="html"><![CDATA[<h1 id="人工神经元"><a href="#人工神经元" class="headerlink" title="人工神经元"></a>人工神经元</h1><h1 id="bp算法"><a href="#bp算法" class="headerlink" title="bp算法"></a>bp算法</h1><h1 id="激活函数"><a href="#激活函数" class="headerlink" title="激活函数"></a>激活函数</h1><h1 id="损失函数"><a href="#损失函数" class="headerlink" title="损失函数"></a>损失函数</h1><h1 id="优化器"><a href="#优化器" class="headerlink" title="优化器"></a>优化器</h1><h2 id="1-SGD"><a href="#1-SGD" class="headerlink" title="1.SGD"></a>1.SGD</h2><h2 id="2-SGD-momentum"><a href="#2-SGD-momentum" class="headerlink" title="2.SGD+momentum"></a>2.SGD+momentum</h2><h2 id="3-Adagrad"><a href="#3-Adagrad" class="headerlink" title="3.Adagrad"></a>3.Adagrad</h2><p>学习率下降得快，可能未收敛就停止训练</p><h2 id="4-RMSProp"><a href="#4-RMSProp" class="headerlink" title="4.RMSProp"></a>4.RMSProp</h2><h2 id="5-ADAM"><a href="#5-ADAM" class="headerlink" title="5.ADAM"></a>5.ADAM</h2>]]></content>
+    
+    
+    <categories>
+      
+      <category>science</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>machine learning</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>专业词汇</title>
     <link href="/2020/05/24/%E4%B8%93%E4%B8%9A%E8%AF%8D%E6%B1%87/"/>
     <url>/2020/05/24/%E4%B8%93%E4%B8%9A%E8%AF%8D%E6%B1%87/</url>
     
-    <content type="html"><![CDATA[<p>fine-grained: 细粒度，类内细分<br> pose estimator 姿势估计<br>retrieval 检索；恢复；取回；拯救<br> state-of-the-art 最先进的<br>benchmarks 基准一个算法之所以被称为benchmark，是因为它的性能已经被广泛研究，人们对它性能的表现形式、测量方法都非常熟悉，因此可以作为标准方法来衡量其他方法的好坏。<br>baseline 一个算法被称为baseline，基本上表示比这个算法性能还差的基本上不能接受的，除非方法上有革命性的创新点，而且还有巨大的改进空间和超越benchmark的潜力，只是因为是发展初期而性能有限。所以baseline有一个自带的含义就是“性能起点”。<br><strong>SOTA&gt;benchmark&gt;baseline</strong><br>leverage n. 手段，影响力；杠杆作用；杠杆效率v. 利用；举债经营<br>are prone to 易于<br>partition  n. 划分，分开；[数] 分割；隔墙；隔离物vt. [数] 分割；分隔；区分<br>backbone  n. 脊骨，脊柱；支柱；骨气，毅力；书脊；（生化）聚合分子主链；（计算机）主干网<br> outliers  离群值<br>parse n. 语法分析；剖析v. 解析<br>backbone n. 脊骨，脊柱；支柱；骨气，毅力；书脊；（生化）聚合分子主链；（计算机）主干网<br>column n. 纵队，列；专栏；圆柱，柱形物<br>stripe  n. 条纹，斑纹；种类 vt. 加条纹于…<br> Cross-Entropy  n.交叉熵<br>concatenate  v. 连接，连结，使连锁 adj. 连接的，连结的，连锁的<br>spatial adj. 空间的；存在于空间的；受空间条件限制的<br>fine-grained adj. 细粒的；有细密纹理的adj. 详细的；深入的<br>down-sampling 下采样<br>granularity  n.间隔尺寸<br>denote vt. 表示，指示<br>intuition  n. 直觉；直觉力；直觉的知识<br>non-trivial adj. 非平凡的；面对较重大<br>similarity measuring 相似性度量<br>iteratively 反复地<br>convergence n.收敛，集合  </p>]]></content>
+    <content type="html"><![CDATA[<p>fine-grained: 细粒度，类内细分<br> pose estimator 姿势估计<br>retrieval 检索；恢复；取回；拯救<br> state-of-the-art 最先进的<br>benchmarks 基准一个算法之所以被称为benchmark，是因为它的性能已经被广泛研究，人们对它性能的表现形式、测量方法都非常熟悉，因此可以作为标准方法来衡量其他方法的好坏。<br>baseline 一个算法被称为baseline，基本上表示比这个算法性能还差的基本上不能接受的，除非方法上有革命性的创新点，而且还有巨大的改进空间和超越benchmark的潜力，只是因为是发展初期而性能有限。所以baseline有一个自带的含义就是“性能起点”。<br><strong>SOTA&gt;benchmark&gt;baseline</strong><br>leverage n. 手段，影响力；杠杆作用；杠杆效率v. 利用；举债经营<br>are prone to 易于<br>partition  n. 划分，分开；[数] 分割；隔墙；隔离物vt. [数] 分割；分隔；区分<br>backbone  n. 脊骨，脊柱；支柱；骨气，毅力；书脊；（生化）聚合分子主链；（计算机）主干网<br> outliers  离群值<br>parse n. 语法分析；剖析v. 解析<br>backbone n. 脊骨，脊柱；支柱；骨气，毅力；书脊；（生化）聚合分子主链；（计算机）主干网<br>column n. 纵队，列；专栏；圆柱，柱形物<br>stripe  n. 条纹，斑纹；种类 vt. 加条纹于…<br> Cross-Entropy  n.交叉熵<br>concatenate  v. 连接，连结，使连锁 adj. 连接的，连结的，连锁的<br>spatial adj. 空间的；存在于空间的；受空间条件限制的<br>down-sampling 下采样<br>granularity  n.间隔尺寸<br>denote vt. 表示，指示<br>intuition  n. 直觉；直觉力；直觉的知识<br>non-trivial adj. 非平凡的；面对较重大<br>similarity measuring 相似性度量<br>iteratively 反复地<br>convergence n.收敛，集合<br> residual  adj. （数量）剩余的；（物质状态在成因消失后）剩余的，残留的；（实验误差）舍去的，残差的；（土壤）残余的<br>n. 剩余物，残渣；残差，剩余误差<br>stochastic gradient descent (SGD) 随机梯度下降<br>padding n.填充<br>dilation n.扩张，详述<br>nondeterministic a.不确定的<br>proposal  </p>]]></content>
     
     
     <categories>

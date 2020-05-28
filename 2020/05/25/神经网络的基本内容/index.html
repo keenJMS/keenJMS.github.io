@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="keenJMS">
   <meta name="keywords" content="">
-  <title>标签 - keenJMS&#39;BLOG</title>
+  <title>神经网络的基本内容 - keenJMS&#39;BLOG</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
@@ -45,7 +45,7 @@
 <meta name="generator" content="Hexo 4.2.1"></head>
 
 <body>
-  <header style="height: 80vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -128,6 +128,38 @@
             </span>
 
             
+              
+                <div class="mt-3 post-meta">
+                  <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+                  <time datetime="2020-05-25 14:29">
+                    2020年5月25日 下午
+                  </time>
+                </div>
+              
+
+              <div class="mt-1">
+                
+                  
+                  <span class="post-meta mr-2">
+                    <i class="iconfont icon-chart"></i>
+                    43 字
+                  </span>
+                
+
+                
+                  
+                  <span class="post-meta mr-2">
+                      <i class="iconfont icon-clock-fill"></i>
+                    
+                    
+                    1
+                     分钟
+                  </span>
+                
+
+                
+              </div>
+            
           </div>
 
           
@@ -138,24 +170,107 @@
 
   <main>
     
-      <div class="container nopadding-md">
-        <div class="py-5" id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
+      
 
-<div class="text-center tagcloud">
-  <a href="/tags/ENGLISH/" style="font-size: 15px; color: #bbe">ENGLISH</a> <a href="/tags/ReID/" style="font-size: 30px; color: #337ab7">ReID</a> <a href="/tags/Summary/" style="font-size: 15px; color: #bbe">Summary</a> <a href="/tags/machine-learning/" style="font-size: 15px; color: #bbe">machine learning</a> <a href="/tags/python%E5%BA%93/" style="font-size: 15px; color: #bbe">python库</a>
-</div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <h1 id="人工神经元"><a href="#人工神经元" class="headerlink" title="人工神经元"></a>人工神经元</h1><h1 id="bp算法"><a href="#bp算法" class="headerlink" title="bp算法"></a>bp算法</h1><h1 id="激活函数"><a href="#激活函数" class="headerlink" title="激活函数"></a>激活函数</h1><h1 id="损失函数"><a href="#损失函数" class="headerlink" title="损失函数"></a>损失函数</h1><h1 id="优化器"><a href="#优化器" class="headerlink" title="优化器"></a>优化器</h1><h2 id="1-SGD"><a href="#1-SGD" class="headerlink" title="1.SGD"></a>1.SGD</h2><h2 id="2-SGD-momentum"><a href="#2-SGD-momentum" class="headerlink" title="2.SGD+momentum"></a>2.SGD+momentum</h2><h2 id="3-Adagrad"><a href="#3-Adagrad" class="headerlink" title="3.Adagrad"></a>3.Adagrad</h2><p>学习率下降得快，可能未收敛就停止训练</p>
+<h2 id="4-RMSProp"><a href="#4-RMSProp" class="headerlink" title="4.RMSProp"></a>4.RMSProp</h2><h2 id="5-ADAM"><a href="#5-ADAM" class="headerlink" title="5.ADAM"></a>5.ADAM</h2>
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/science/">science</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/machine-learning/">machine learning</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/05/26/pytorch%E7%9A%84forward/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">pytorch入门</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2020/05/24/%E4%B8%93%E4%B8%9A%E8%AF%8D%E6%B1%87/">
+                        <span class="hidden-mobile">专业词汇</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <div class="comments" id="comments">
+                
+                
+  <script defer src="https://utteranc.es/client.js"
+          repo="keenJMS/commit-utterances"
+          issue-term="pathname"
+  
+          label="utterances"
+    
+          theme="github-dark-orange"
+          crossorigin="anonymous"
+  >
+  </script>
+
 
               </div>
-            </div>
+            
           </div>
         </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
     
   </main>
 
@@ -236,6 +351,34 @@
 
 
 
+  
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '.post-content',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
 
 
   <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
@@ -257,7 +400,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "标签&nbsp;",
+        "神经网络的基本内容&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
@@ -300,6 +443,20 @@
   </script>
 
 
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
 
 
 
