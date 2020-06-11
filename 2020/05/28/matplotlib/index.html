@@ -142,7 +142,7 @@
                   
                   <span class="post-meta mr-2">
                     <i class="iconfont icon-chart"></i>
-                    1.3k 字
+                    1.7k 字
                   </span>
                 
 
@@ -152,7 +152,7 @@
                       <i class="iconfont icon-clock-fill"></i>
                     
                     
-                    20
+                    27
                      分钟
                   </span>
                 
@@ -306,7 +306,47 @@ ax2.plot(x,z, &apos;b&apos;)
 ax2.set_title(&apos;2x&apos;)
 plt.show()</code></pre><p><img src="/img/plt_learning/insert.png" srcset="/img/loading.gif" alt=""></p>
 <h1 id="读写图片"><a href="#读写图片" class="headerlink" title="读写图片"></a>读写图片</h1><pre><code>plt.imread(&apos;文件名&apos;)
-plt.imsave(&apos;文件名&apos;)</code></pre><h1 id="plt-imshow-与plt-show"><a href="#plt-imshow-与plt-show" class="headerlink" title="plt.imshow()与plt.show()"></a>plt.imshow()与plt.show()</h1><p>plt.imshow()函数负责对图像进行处理，并显示其格式，而plt.show()则是将plt.imshow()处理后的函数显示出来。在plt.scatter()前加入plt.imshow(‘img’)可对img的图描上散点。</p>
+plt.imsave(&apos;文件名&apos;)</code></pre><h1 id="plt-imshow-与plt-show"><a href="#plt-imshow-与plt-show" class="headerlink" title="plt.imshow()与plt.show()"></a>plt.imshow()与plt.show()</h1><p>plt.imshow()函数负责对图像进行处理，并显示其格式，而plt.show()则是将plt.imshow()处理后的函数显示出来。在plt.scatter()前加入plt.imshow(‘img’)可对img的图描上散点。  </p>
+<h1 id="画散点图、等高线图和3d图"><a href="#画散点图、等高线图和3d图" class="headerlink" title="画散点图、等高线图和3d图"></a>画散点图、等高线图和3d图</h1><p><strong>散点图</strong>  </p>
+<pre><code>pic=plt.figure(&apos;scatter and regression&apos;)
+plt.scatter(X[:,1],y)
+plt.plot(X[:,1],np.dot(X,theta),color=&apos;red&apos;)
+plt.xlabel(&apos;X&apos;)
+plt.ylabel(&apos;y&apos;)
+plt.show()</code></pre><p>使用scatter函数，效果如图<br><img src="/img/plt_learning/scatter.jpg" srcset="/img/loading.gif" alt=""><br><strong>等高线图</strong><br>plt.contourf(x,y,f(x,y))，其中x，y是np.meshgrid的返回值，代表网格的坐标，f函数为求他们的高,x,y,f都是同维度的   </p>
+<pre><code>n=100
+theta0 = np.linspace(-10, 10, n)
+theta1 = np.linspace(-1, 4, n)
+# 把x,y数据生成mesh网格状的数据，因为等高线的显示是在网格的基础上添加上高度值
+T0, T1 = np.meshgrid(theta0, theta1)#T0,T1都是1000x1000
+# # 填充等高线
+# plt.contourf(T0, T1, f(T0,T1), 40)
+# 添加等高线
+C = plt.contour(T0, T1, self.f(T0,T1), 40)
+plt.clabel(C, inline=True, fontsize=12)
+# 显示图表
+plt.show()</code></pre><p>效果如图<br><img src="/img/plt_learning/contourf.jpg" srcset="/img/loading.gif" alt=""><br><strong>3d图</strong>  </p>
+<pre><code>n=500
+theta0 = np.linspace(-10, 10, n)
+theta1 = np.linspace(-4, 4, n)
+# 把x,y数据生成mesh网格状的数据，因为等高线的显示是在网格的基础上添加上高度值
+T0, T1 = np.meshgrid(theta0, theta1)#T0,T1都是1000x1000
+loss= self.f(T0,T1)
+fig4 = plt.figure()
+ax4 = plt.axes(projection=&apos;3d&apos;)
+# 作图offset用来调投影平面的位置
+ax4.plot_surface(T0, T1, loss, alpha=0.3, cmap=&apos;winter&apos;)  # 生成表面， alpha 用于控制透明度
+ax4.contour(T0, T1, loss, zdir=&apos;z&apos;, offset=0, cmap=&quot;cool&quot;)  # 生成z方向投影，投到x-y平面
+ax4.contour(T0, T1, loss, zdir=&apos;x&apos;, offset=-20, cmap=&quot;rainbow&quot;)  # 生成x方向投影，投到y-z平面
+ax4.contour(T0, T1, loss, zdir=&apos;y&apos;, offset=6, cmap=&quot;rainbow&quot;)  # 生成y方向投影，投到x-z平面
+# 设定显示范围
+ax4.set_xlabel(&apos;theta0&apos;)
+ax4.set_xlim(-20, 20)  # 拉开坐标轴范围显示投影
+ax4.set_ylabel(&apos;theta1&apos;)
+ax4.set_ylim(-6, 6)
+ax4.set_zlabel(&apos;loss&apos;)
+ax4.set_zlim(0, 400)
+plt.show()</code></pre><p>效果如图<br><img src="/img/plt_learning/3d.jpg" srcset="/img/loading.gif" alt=""> </p>
 
             </article>
             <hr>
